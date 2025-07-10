@@ -1,0 +1,56 @@
+.container{
+  height: 100vh;
+  width:213vh;
+   background-color: #27292b;
+   display: flex;
+   flex-direction: column;
+   align-items: right;
+   justify-content: center;
+    
+}
+h1{
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: -400px;
+}
+.colorpicker{
+  width:8rem;
+  height:2.5rem;
+  border-width:1px;
+  border-radius: 0.25rem;
+}
+.threed{
+ width:30%;
+ height:40vh;
+ border-width: 2px;
+ border-color:#d1d5db;
+ border-radius: 0.75rem;
+ margin-top: -430px;
+
+}
+
+.my-input {
+  width: 16rem; /* 64 * 0.25rem = 16rem */
+  height: 2.5rem; /* 10 * 0.25rem = 2.5rem */
+  border-width: 1px;
+  border-radius: 0.25rem;
+  padding-left: 0.5rem; /* 2 * 0.25rem = 0.5rem */
+  padding-right: 0.5rem; /* 2 * 0.25rem = 0.5rem */
+}
+.pant{
+  margin-left:100px;
+}
+
+.all{
+    flex-direction: row;
+
+}
+h7{
+  color: red;
+  margin-top: -8px;
+}
+.onechance{
+  color: red;
+  margin-top: -7px;
+  
+}

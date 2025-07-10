@@ -1,0 +1,21 @@
+
+h1{
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: -400px;
+}
+.colorpicker{
+  width:8rem;
+  height:2.5rem;
+  border-width:1px;
+  border-radius: 0.25rem;
+}
+.threed{
+ width:50%;
+ height:80vh;
+ border-width: 2px;
+ border-color:#d1d5db;
+ border-radius: 0.75rem;
+ margin-top: -430px;
+
+}
