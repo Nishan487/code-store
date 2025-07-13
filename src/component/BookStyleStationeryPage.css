@@ -4,7 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  min-height: 0vh;
+  min-height: 10vh;
 max-height: 0vh;
   background-color: #f0f0f0;
   padding: 10px;
@@ -13,7 +13,7 @@ max-height: 0vh;
 
 .book-page {
   width: 210mm; /* A4 width */
-  min-height: 297mm; /* Min height for A4, will expand if content is long */
+  min-height: 29mm; /* Min height for A4, will expand if content is long */
   background-color: #ffffff;
   border-radius: 4px;
   box-shadow:
@@ -27,6 +27,7 @@ max-height: 0vh;
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 500px;
 }
 
 .book-page-header {

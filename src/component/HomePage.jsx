@@ -4,7 +4,9 @@ import './HomePage.css'; // Import the CSS file
 import { PiShirtFoldedLight } from "react-icons/pi";
 import { FaBookOpen } from "react-icons/fa";
 import About from './About';
-const HomePage = ({ setActiveCategory }) => {
+import { useNavigate } from 'react-router-dom';
+const HomePage = () => {
+    const navigate=useNavigate();
     return (
         <div className='all'>
         <div className="homepage-container">
@@ -25,7 +27,7 @@ const HomePage = ({ setActiveCategory }) => {
                     </p>
                     <button
                         className="customize-button"
-                        onClick={() => setActiveCategory('uniform')}
+                        onClick={() => navigate('/uniforms')}
                     >
                         Customize Now!
                     </button>
@@ -43,7 +45,7 @@ const HomePage = ({ setActiveCategory }) => {
                     </p>
                     <button
                         className="customize-button"
-                        onClick={() => setActiveCategory('stationery')}
+                         onClick={() => navigate('/stationary')}
                     >
                         Customize Now!
                     </button>
@@ -66,7 +68,7 @@ const HomePage = ({ setActiveCategory }) => {
                     </p>
                     <button
                         className="customize-button"
-                        onClick={() => setActiveCategory('idcard')}
+                        onClick={() => navigate('/idcard')}
                     >
                         Customize Now!
                     </button>

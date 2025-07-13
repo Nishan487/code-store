@@ -155,7 +155,11 @@ function Id_card() {
   const [course, setCourse] = useState("Computer Science");
   const [photo, setPhoto] = useState(null);
   const [added, setAdded] = useState(false);
-
+  const [parentName,setparentName]=useState("jonny sins");
+  const [grade ,setGrade]=useState('10');
+  const [rollNo,setRollNo]=useState('10');
+  const [contactinfo, setContactinfo]=useState('9863447373');
+  const [collageName,setCollageName]=useState('CodeStore University')
 const handleClick = () => {
   const cardData = {
     id: Date.now(),
@@ -164,6 +168,10 @@ const handleClick = () => {
     studentId,
     course,
     photo,
+    parentName,
+    contactinfo,
+    collageName,
+    
   };
 
   const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -190,7 +198,7 @@ const handleClick = () => {
       <div className="card-container">
         <div className="id-card">
           <h3>STUDENT ID CARD</h3>
-          <p className="university">CodeStore University</p>
+          <p className="university">{collageName}</p>
 
           <div className="photo">
             {photo ? (
@@ -201,7 +209,10 @@ const handleClick = () => {
           </div>
 
           <p><strong>Name:</strong> {name}</p>
+          <p><strong>Parent Name:</strong> {parentName}</p>
           <p><strong>Student ID:</strong> {studentId}</p>
+          <p><strong>ContactInfo:</strong> {contactinfo}</p>
+
           <p><strong>Course:</strong> {course}</p>
           <p className="validity" style={{color:'black'}}>Valid until: 12/2026</p>
         </div>
@@ -215,6 +226,12 @@ const handleClick = () => {
     </div>
     </div>
     <div className="form-area">
+      <input
+            type="text"
+            value={collageName}
+            onChange={(e) => setCollageName(e.target.value)}
+            placeholder="Enter collage Name"
+          />
           <input
             type="text"
             value={name}
@@ -232,6 +249,18 @@ const handleClick = () => {
             value={course}
             onChange={(e) => setCourse(e.target.value)}
             placeholder="Enter Course"
+          />
+           <input
+            type="text"
+            value={parentName}
+            onChange={(e) => setparentName(e.target.value)}
+            placeholder="Enter parent Name"
+          />
+           <input
+            type="text"
+            value={contactinfo}
+            onChange={(e) => setContactinfo(e.target.value)}
+            placeholder="Enter contactinfo"
           />
           <label className="upload-btn">
             Upload Photo (Placeholder)

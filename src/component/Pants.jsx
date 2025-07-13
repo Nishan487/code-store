@@ -46,12 +46,26 @@ export default function Pants() {
             >
               Pants Color:
             </label>
-            <input
-              type="color"
-              value={pantColor}
-              onChange={(e) => setPantColor(e.target.value)}
-              className="colorpicker"
-            />
+            <div className="color-options">
+  {[
+    { name: 'Red', value: '#ff0000' },
+    { name: 'Crimson', value: '#dc143c' },
+    { name: 'Yellow', value: '#ffff00' },
+    { name: 'Orange', value: '#ffa500' },
+    { name: 'Green', value: '#008000' },
+    { name: 'Blue', value: '#0000ff' },
+  ].map((colorOption) => (
+    <button
+      type="button" // ✅ prevent form refresh
+      key={colorOption.value}
+      className={`color-swatch ${pantColor === colorOption.value ? 'selected' : ''}`}
+      style={{ backgroundColor: colorOption.value }}
+      onClick={() => setPantColor(colorOption.value)}
+      aria-label={colorOption.name}
+    />
+  ))}
+</div>
+
           </div>
         </form>
       </div>

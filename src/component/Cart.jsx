@@ -25,6 +25,7 @@ function Cart() {
   };
 
   return (
+    <div className="div">
     <div className="cart-wrapper">
       <h2>🛒 Cart</h2>
 
@@ -42,7 +43,7 @@ function Cart() {
             {item.type === "idcard" ? (
               <>
                 <h3>🎓 ID CARD</h3>
-                <p className="university">CodeStore University</p>
+                <p className="university">{item.collageName}</p>
                 <div className="photo">
                   {item.photo ? (
                     <img src={item.photo} alt="Uploaded" />
@@ -50,9 +51,13 @@ function Cart() {
                     <div className="photo-placeholder">Photo</div>
                   )}
                 </div>
+                
                 <p><strong>Name:</strong> {item.name}</p>
                 <p><strong>Student ID:</strong> {item.studentId}</p>
                 <p><strong>Course:</strong> {item.course}</p>
+                <p><strong>Parent Name:</strong> {item.parentName}</p>
+               <p><strong>ContactInfo:</strong> {item.contactinfo}</p>
+               {/* <p><strong>Course:</strong> {item.course}</p> */}
                 <p className="validity">Valid until: 12/2026</p>
               </>
             ) : (
@@ -69,6 +74,55 @@ function Cart() {
            <PantPreview color={item.pantColor} />
   </>
 )}
+
+{item.type === 'stationary' && (
+              <>
+                <h3>📚 Stationary - Colored Book</h3>
+                <div style={{ position: 'relative', width: 350, height: 250, marginBottom: '20px' }}>
+  <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+    <defs>
+      <filter id={`colorize-${item.id}`}>
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 1
+                  0 0 0 0 1
+                  0 0 0 0 1
+                  0 0 0 1 0"
+          result="white"
+        />
+        <feFlood floodColor={item.color} result="flood" />
+        <feComposite in="flood" in2="white" operator="in" result="colored" />
+        <feBlend in="SourceGraphic" in2="colored" mode="multiply" />
+      </filter>
+
+      {/* curved path for text */}
+      <path id={`curve-${item.id}`} d="M 10,80 A 40,40 0 0,1 90,80" fill="transparent" />
+    </defs>
+
+    <image
+      href={item.image}
+      width="100%"
+      height="100%"
+      preserveAspectRatio="xMidYMid meet"
+      filter={`url(#colorize-${item.id})`}
+    />
+
+    {/* curved text */}
+    <text fontSize="6" fill="black">
+      <textPath href={`#curve-${item.id}`} startOffset="50%" textAnchor="middle">
+        {item.text}
+      </textPath>
+    </text>
+  </svg>
+</div>
+
+                <p>
+                  <strong>Color:</strong>{' '}
+                  <span style={{ color: item.color }}>{item.color}</span>
+                </p>
+              </>
+            )}
+          
               </>
             )}
 
@@ -79,7 +133,12 @@ function Cart() {
         ))
       )}
     </div>
+    </div>
   );
 }
 
 export default Cart;
+
+
+
+

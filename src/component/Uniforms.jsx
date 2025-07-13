@@ -53,11 +53,11 @@ function Shirt({ color,customText1,customText2,customTextColor}) {
 }
 
 export default function uniforms() {
-  const [shirtColor, setShirtColor] = useState("#1e90ff");
+  const [shirtColor, setShirtColor] = useState("#e6ebf0ff");
   const [shirtFrontText, setShirtFrontText]=useState('')
     const [shirtBackText, setShirtBackText]=useState('school chaun mavi')
   const [shirtTextColor, setShirtTextColor]=useState("#1e90ff");
-  const [pantColor, setPantColor] = useState("#1e90ff");
+  const [pantColor, setPantColor] = useState("#ff691eff");
     // New state for the simulated cart
   const [cartItems, setCartItems] = useState([]);
   const [showCartModal, setShowCartModal] = useState(false); // State to control modal visibility
@@ -120,18 +120,30 @@ const handleAddToCart = () => {
       <h1 >👕 Uniform Customizer</h1>
          <form className="bg-white p-6 rounded-xl shadow-lg flex flex-col gap-4 w-full max-w-md">
         {/* Shirt Color Picker */}
-        <div> 
-          <label htmlFor="shirtColorPicker" className="block text-lg font-semibold text-gray-700 mb-2">
-            Shirt Color:
-          </label>
-      {/* 🎨 Color Picker */}
-      <input
-        type="color"
-        value={shirtColor}
-        onChange={(e) => setShirtColor(e.target.value)}
-        className="colorpicker"
+        <div>
+  <label className="block text-lg font-semibold text-gray-700 mb-2">
+    Shirt Color:
+  </label>
+  <div className="color-options">
+    {[
+      { name: 'Red', value: '#ff0000' },
+      { name: 'Crimson', value: '#dc143c' },
+      { name: 'Yellow', value: '#ffff00' },
+      { name: 'Orange', value: '#ffa500' },
+      { name: 'Green', value: '#008000' },
+      { name: 'Blue', value: '#0000ff' },
+    ].map((colorOption) => (
+      <button
+      type="button"
+        key={colorOption.value}
+        className={`color-swatch ${shirtColor === colorOption.value ? 'selected' : ''}`}
+        style={{ backgroundColor: colorOption.value }}
+        onClick={() => setShirtColor(colorOption.value)}
+        aria-label={colorOption.name}
       />
-      </div>
+    ))}
+  </div>
+</div>
          <div>
           <label htmlFor="textColorPicker" className="block text-lg font-semibold text-gray-700 mb-2">
             Text Color:
@@ -211,7 +223,6 @@ const handleAddToCart = () => {
           borderRadius: "5px",
           marginTop: "20px",
         }}
-        
       >
         {addedOnce ? "You will get only one chance to buy" : "Add to Cart"}
       </button>

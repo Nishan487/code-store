@@ -1,6 +1,6 @@
-/* Cart.css */
+
 .cart-wrapper {
-  padding: 20px;
+  padding: 10px;
   background-color: #f9f9f9;
   min-height: 100vh;
   font-family: Arial, sans-serif;
@@ -81,4 +81,8 @@
 
 .remove-button:hover {
   background-color: #c62828;
+}
+.div{
+  display: flex;
+  flex-direction: column;
 }
