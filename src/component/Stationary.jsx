@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import bookImage from '../assets/book.png'; // Make sure the path is correct
 import './Stationary.css';
+import Pen from './Pen';
 
 const Stationary = () => {
   const [color, setColor] = useState('#ff0000');
   const [customText, setCustomText] = useState('');
-
+const [textColor, setTextColor] = useState('#000000'); 
   const handleAddToCart = () => {
     const newItem = {
       id: 'stationary-' + Date.now(),
@@ -13,6 +14,7 @@ const Stationary = () => {
       name: 'Colored Book',
       color,
       text: customText,
+      textColor,
       image: bookImage,
     };
 
@@ -25,6 +27,7 @@ const Stationary = () => {
   };
 
   return (
+    <div className="stationary">
     <div className="div">
     <div className="stationary-container">
       <h1>Stationary Store</h1>
@@ -38,7 +41,15 @@ const Stationary = () => {
           className="color-picker-input"
         />
       </label>
-
+       <label className="color-picker-label">
+          Choose Text Color:
+          <input
+            type="color"
+            value={textColor}
+            onChange={(e) => setTextColor(e.target.value)}
+            className="color-picker-input"
+          />
+        </label>
       <label className="custom-text-label">
         Write Text on Book:
         <input
@@ -88,7 +99,7 @@ const Stationary = () => {
     />
 
     {/* Curved text on book */}
-    <text fontSize="5" fill="black">
+    <text fontSize="5" fill={textColor}>
       <textPath href="#text-curve" startOffset="50%" textAnchor="middle">
         {customText}
       </textPath>
@@ -102,6 +113,8 @@ const Stationary = () => {
       </button>
     </div>
           
+    </div>
+    <Pen className='pen'/>
     </div>
   );
 };
