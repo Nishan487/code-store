@@ -10,7 +10,7 @@ const Pen = () => {
   const handleAddToCart = () => {
     const newItem = {
       id: 'pen-' + Date.now(),
-      type: 'stationary',
+      type: 'stationarys',
       name: 'Custom Pen',
       color,
       text: customText,
@@ -57,7 +57,7 @@ const Pen = () => {
             value={customText}
             onChange={(e) => setCustomText(e.target.value)}
             placeholder="Your name"
-            maxLength={7}
+            maxLength={5}
             className="pen-custom-text-input"
           />
         </label>

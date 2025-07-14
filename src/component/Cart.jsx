@@ -78,7 +78,7 @@ function Cart() {
 {item.type === 'stationary' && (
               <>
                 <h3>📚 Stationary - Colored Book</h3>
-                <div style={{ position: 'relative', width: 350, height: 250, marginBottom: '20px' }}>
+                <div style={{ position: 'relative', width: 350, height: 280, marginBottom: '20px' }}>
   <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
     <defs>
       <filter id={`colorize-${item.id}`}>
@@ -108,18 +108,55 @@ function Cart() {
     />
 
     {/* curved text */}
-    <text fontSize="6" fill="black">
+    <text fontSize="6" fill={item.textColor}>
       <textPath href={`#curve-${item.id}`} startOffset="50%" textAnchor="middle">
         {item.text}
       </textPath>
     </text>
   </svg>
 </div>
+              </>
+            )}
+            {item.type === 'stationarys' && (
+              <>
+                <h3>📚 Stationary - Colored Book</h3>
+                <div style={{ position: 'relative', width: 360, height: 290, marginBottom: '20px' }}>
+  <svg viewBox="0 0 115 100" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
+    <defs>
+      <filter id={`colorize-${item.id}`}>
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 1
+                  0 0 0 0 1
+                  0 0 0 0 1
+                  0 0 0 1 0"
+          result="white"
+        />
+        <feFlood floodColor={item.color} result="flood" />
+        <feComposite in="flood" in2="white" operator="in" result="colored" />
+        <feBlend in="SourceGraphic" in2="colored" mode="multiply" />
+      </filter>
 
-                <p>
-                  <strong>Color:</strong>{' '}
-                  <span style={{ color: item.color }}>{item.color}</span>
-                </p>
+      {/* curved path for text */}
+      <path id={`curve-${item.id}`} d="M 12.5,80 A 46,40 0 0,1 102,80" fill="transparent" />
+    </defs>
+
+    <image
+      href={item.image}
+      width="100%"
+      height="100%"
+      preserveAspectRatio="xMidYMid meet"
+      filter={`url(#colorize-${item.id})`}
+    />
+
+    {/* curved text */}
+    <text fontSize="3" fill={item.textColor}>
+      <textPath href={`#curve-${item.id}`} startOffset="50%" textAnchor="middle">
+        {item.text}
+      </textPath>
+    </text>
+  </svg>
+</div>
               </>
             )}
           
