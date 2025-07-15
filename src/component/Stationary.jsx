@@ -4,9 +4,9 @@ import './Stationary.css';
 import Pen from './Pen';
 
 const Stationary = () => {
-  const [color, setColor] = useState('#ff0000');
+  const [color, setColor] = useState('#060606ff');
   const [customText, setCustomText] = useState('');
-const [textColor, setTextColor] = useState('#000000'); 
+const [textColor, setTextColor] = useState('#0d0d0dff'); 
   const handleAddToCart = () => {
     const newItem = {
       id: 'stationary-' + Date.now(),
@@ -27,10 +27,10 @@ const [textColor, setTextColor] = useState('#000000');
   };
 
   return (
-    <div className="stationary">
+    
     <div className="div">
     <div className="stationary-container">
-      <h1>Stationary Store</h1>
+      <h1>Customize Your Book</h1>
 
       <label className="color-picker-label">
         Choose Book Color:
@@ -112,10 +112,10 @@ const [textColor, setTextColor] = useState('#000000');
         Add to Cart
       </button>
     </div>
-          
+          <Pen className='pen'/>
     </div>
-    <Pen className='pen'/>
-    </div>
+    
+    
   );
 };
 

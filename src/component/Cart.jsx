@@ -25,8 +25,8 @@ function Cart() {
   };
 
   return (
-    <div className="div">
-    <div className="cart-wrapper">
+    <div className="div" >
+    <div className="cart-wrapper" >
       <h2>🛒 Cart</h2>
 
       {cartItems.length > 0 && (
@@ -39,7 +39,9 @@ function Cart() {
         <p>No items in cart yet.</p>
       ) : (
         cartItems.map((item) => (
-          <div key={item.id} className="id-card">
+          <div key={item.id} className="id-card" style={{
+            background:item.backgroundColor
+          }}>
             {item.type === "idcard" ? (
               <>
                 <h3>🎓 ID CARD</h3>
@@ -62,8 +64,9 @@ function Cart() {
               </>
             ) : (
               <>
+              <div style={{background:"#6953da"}}>
                 {item.type === "uniform" && (
-  <>
+  <div>
     <h3>👕 Uniform</h3>
     <ShirtPreview
       color={item.shirtColor}
@@ -72,13 +75,14 @@ function Cart() {
       textColor={item.shirtTextColor}
     />
            <PantPreview color={item.pantColor} />
-  </>
+  </div>
 )}
-
+</div>
+<div style={{background:"#6953da"}}>
 {item.type === 'stationary' && (
               <>
                 <h3>📚 Stationary - Colored Book</h3>
-                <div style={{ position: 'relative', width: 350, height: 280, marginBottom: '20px' }}>
+                <div style={{ position: 'relative', width: 350,height: 280, marginBottom: '20px' }}>
   <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
     <defs>
       <filter id={`colorize-${item.id}`}>
@@ -157,13 +161,15 @@ function Cart() {
     </text>
   </svg>
 </div>
+
               </>
             )}
+            </div>
           
               </>
             )}
 
-            <button className="remove-button" onClick={() => handleRemove(item.id)}>
+            <button className="remove-button" onClick={() => handleRemove(item.id)} >
               Remove
             </button>
           </div>

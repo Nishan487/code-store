@@ -154,12 +154,14 @@ function Id_card() {
   const [studentId, setStudentId] = useState("CS101-2025");
   const [course, setCourse] = useState("Computer Science");
   const [photo, setPhoto] = useState(null);
+    const [backphoto, setBackphoto] = useState(null);
   const [added, setAdded] = useState(false);
   const [parentName,setparentName]=useState("jonny sins");
   const [grade ,setGrade]=useState('10');
   const [rollNo,setRollNo]=useState('10');
   const [contactinfo, setContactinfo]=useState('9863447373');
-  const [collageName,setCollageName]=useState('CodeStore University')
+  const [collageName,setCollageName]=useState('CodeStore University');
+  const [backgroundColor,setBackgroundColor]=useState('#6953da');
 const handleClick = () => {
   const cardData = {
     id: Date.now(),
@@ -171,6 +173,9 @@ const handleClick = () => {
     parentName,
     contactinfo,
     collageName,
+   
+  
+    backgroundColor,
     
   };
 
@@ -190,14 +195,24 @@ const handleClick = () => {
       setPhoto(URL.createObjectURL(file));
     }
   };
+  //  const handleBackPhotoUpload = (e) => {
+  //   const file = e.target.files[1];
+  //   if (file) {
+  //     setBackphoto(URL.createObjectURL(file));
+  //   }
+  // };
+
 
   return (
     <>
     <div className="main-wrapper">
       <h2 className="title">Design Your ID Card</h2>
       <div className="card-container">
-        <div className="id-card">
-          <h3>STUDENT ID CARD</h3>
+        <div className="id-card" style={{
+          backgroundColor:backgroundColor
+         
+          }}>
+          
           <p className="university">{collageName}</p>
 
           <div className="photo">
@@ -206,6 +221,12 @@ const handleClick = () => {
             ) : (
               <div className="photo-placeholder">Photo</div>
             )}
+
+             {/* {backphoto ? (
+              <img src={backphoto} alt="Uploaded" />
+            ) : (
+              <div className="photo-placeholder">Back photo</div>
+            )} */}
           </div>
 
           <p><strong>Name:</strong> {name}</p>
@@ -226,6 +247,16 @@ const handleClick = () => {
     </div>
     </div>
     <div className="form-area">
+    <label className="color-picker-label">
+      Choose Color:
+          <input
+            type="color"
+            value={backgroundColor}
+            onChange={(e) => setBackgroundColor(e.target.value)}
+            className="color-picker-input"
+          />
+        </label>
+         
       <input
             type="text"
             value={collageName}
@@ -266,6 +297,10 @@ const handleClick = () => {
             Upload Photo (Placeholder)
             <input type="file" accept="image/*" onChange={handlePhotoUpload} hidden />
           </label>
+                     {/* <label className="upload-btn">
+            Upload Back Photo (Placeholder)
+            <input type="file" accept="image/*" onChange={handleBackPhotoUpload} hidden />
+          </label> */}
         </div>
          <div className="discussion">
           <p>An ID Card (Identification Card) is a small card that contains personal and official information about a person. It helps to identify, verify, and authorize the person in various settings like schools, colleges, offices, or organizations.</p>
@@ -279,3 +314,4 @@ const handleClick = () => {
 export default Id_card;
 
   // Function to handle ID card name input
+

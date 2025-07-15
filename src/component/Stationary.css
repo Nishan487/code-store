@@ -9,14 +9,15 @@
   box-shadow: 0 4px 10px rgba(0, 1, 0, 0.1);
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-  margin-top: 550px;
+  margin-top: 600px;
   margin-left: 100px;
+ color: black;
 }
 
 .stationary-container h1 {
   text-align: center;
   align-items: center;
-  margin-bottom: -200px;
+  margin-bottom: -220px;
   color: black;
 }
 
@@ -25,14 +26,20 @@
   display: block;
   margin-bottom: 15px;
   font-weight: 600;
-  color: #000;
+  color: rgb(9, 9, 9);
+  
 }
 
 .color-picker-input,
 .custom-text-input {
-  margin-left: 10px;
-  padding: 5px;
   
+  
+padding: 5px;
+  border-radius: 5px;
+  background-color:bisque;
+  color: rgb(4, 4, 4);
+  
+  width: 30%;
 }
 
 .book-wrapper {
@@ -44,6 +51,8 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   overflow: hidden;
+ color: rgb(245, 242, 242);
+  margin-top: -10px;
 }
 
 .book-svg {
@@ -58,7 +67,7 @@
   left: 55%;
   
   transform: translate(-50%, -50%);
-  color: #000;
+  color: #0c0c0c;
   font-weight: bold;
   font-size: 18px;
   white-space: nowrap;
@@ -91,8 +100,7 @@
 .div{
     display: flex;
     width: 1375.5px;
+    background-color: rgb(246, 240, 241);
 }
-.stationary{
-height: 100%;
-}
+
 
