@@ -2,29 +2,33 @@ import React, { useState } from 'react';
 import bookImage from '../assets/book.png'; // Make sure the path is correct
 import './Stationary.css';
 import Pen from './Pen';
+import axios from 'axios';
 
 const Stationary = () => {
   const [color, setColor] = useState('#060606ff');
   const [customText, setCustomText] = useState('');
 const [textColor, setTextColor] = useState('#0d0d0dff'); 
-  const handleAddToCart = () => {
-    const newItem = {
-      id: 'stationary-' + Date.now(),
-      type: 'stationary',
-      name: 'Colored Book',
-      color,
-      text: customText,
-      textColor,
-      image: bookImage,
-    };
-
-    const existing = JSON.parse(localStorage.getItem('cart')) || [];
-    const updated = [...existing, newItem];
-    localStorage.setItem('cart', JSON.stringify(updated));
+ const handleAddToCart = async () => {
+  try {
+    await axios.post('http://localhost:5000/api/cart', {
+      itemName: "Colored Book",
+      itemType: "stationary",
+      itemDetails: {
+        color,
+        text: customText,
+        textColor,
+        image:bookImage,  // This may be a URL or base64, ensure backend supports it
+      },
+    });
 
     alert('Book added to cart!');
-    setCustomText(''); // clear the text after adding
-  };
+    setCustomText(''); // clear input
+  } catch (error) {
+    console.error('Failed to add to cart:', error);
+    alert('Failed to add to cart. Please try again.');
+  }
+};
+
 
   return (
     

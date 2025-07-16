@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./component/NavBar";
 import HomePage from "./component/HomePage";
-
+import AllProducts from "./component/ALLProducts";
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import About from "./component/About";
 import Cart from "./component/Cart";
@@ -20,6 +20,8 @@ function App() {
        <Route path="/stationary" element={<Stationary/>}/>
         <Route path="/idcard" element={<Id_card/>}/>
         <Route path="/cart" element={<Cart/>}/>
+        <Route path="/all-products" element={<AllProducts />} />
+
     </Routes>
     </Router>
       

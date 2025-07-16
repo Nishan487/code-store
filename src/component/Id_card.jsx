@@ -143,9 +143,9 @@
 // }
 
 // export default Id_card;
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./Id_card.css";
-
+import axios from "axios";
 
 
 
@@ -162,32 +162,32 @@ function Id_card() {
   const [contactinfo, setContactinfo]=useState('9863447373');
   const [collageName,setCollageName]=useState('CodeStore University');
   const [backgroundColor,setBackgroundColor]=useState('#6953da');
-const handleClick = () => {
+
+const handleClick = async () => {
   const cardData = {
-    id: Date.now(),
-    type: "idcard",
-    name,
-    studentId,
-    course,
-    photo,
-    parentName,
-    contactinfo,
-    collageName,
-   
-  
-    backgroundColor,
-    
+    itemName: "ID Card",
+    itemType: "idcard",
+    itemDetails:{
+      name,
+      studentId,
+      course,
+      photo,
+      parentName,
+      contactinfo,
+      collageName,
+      backgroundColor
+    }
   };
 
-  const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
-  existingCart.push(cardData);
-
-  localStorage.setItem("cart", JSON.stringify(existingCart));
-
-  setAdded(true);
-  setTimeout(() => setAdded(false), 1500);
+  try {
+    await axios.post('http://localhost:5000/api/cart', cardData);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  } catch (error) {
+    console.error('Error adding to cart:', error);
+    alert("Failed to add item to cart.");
+  }
 };
-
 
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
@@ -202,6 +202,25 @@ const handleClick = () => {
   //   }
   // };
 
+  useEffect(() => {
+  const fetchCart = async () => {
+    try {
+      const res = await axios.get("http://localhost:5000/api/cart");
+
+      // Parse itemDetails JSON string into JS object for each item
+      const parsedItems = res.data.map(item => ({
+        ...item,
+        itemDetails: JSON.parse(item.itemDetails),
+      }));
+
+      setCartItems(parsedItems);
+    } catch (error) {
+      console.error("Failed to fetch cart items:", error);
+    }
+  };
+
+  fetchCart();
+}, []);
 
   return (
     <>
@@ -209,7 +228,7 @@ const handleClick = () => {
       <h2 className="title">Design Your ID Card</h2>
       <div className="card-container">
         <div className="id-card" style={{
-          backgroundColor:backgroundColor
+          backgroundColor:backgroundColor,
          
           }}>
           

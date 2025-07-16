@@ -1,30 +1,33 @@
 import React, { useState } from 'react';
 import penImage from '../assets/pen.png'; // Make sure this is the correct path
 import './Pen.css'; // Custom CSS for Pen page
-
+import axios from 'axios';
 const Pen = () => {
   const [color, setColor] = useState('#0000ff');
   const [customText, setCustomText] = useState('');
   const [textColor, setTextColor] = useState('#000000'); 
 
-  const handleAddToCart = () => {
-    const newItem = {
-      id: 'pen-' + Date.now(),
-      type: 'stationarys',
-      name: 'Custom Pen',
-      color,
-      text: customText,
-      textColor,
-      image: penImage,
-    };
 
-    const existing = JSON.parse(localStorage.getItem('cart')) || [];
-    const updated = [...existing, newItem];
-    localStorage.setItem('cart', JSON.stringify(updated));
+const handleAddToCart = async () => {
+  try {
+    await axios.post('http://localhost:5000/api/cart', {
+      itemName: 'Custom Pen',
+      itemType: 'stationarys',
+      itemDetails: {
+        color,
+        text: customText,
+        textColor,
+       penImage, // Make sure this is a URL or string your backend can store
+      },
+    });
 
     alert('Pen added to cart!');
     setCustomText('');
-  };
+  } catch (error) {
+    console.error('Failed to add pen to cart:', error);
+    alert('Failed to add pen to cart. Please try again.');
+  }
+};
 
   return (
     <div className="pen-div">
